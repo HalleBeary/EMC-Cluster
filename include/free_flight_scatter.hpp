@@ -35,7 +35,7 @@ void free_flight_scatter (geometryClass DevGeometry, ContainerClass* particles, 
     if (dtau <= timestep)
       do
       {
-    	  if ( scat_par->get_maxScatMech() > 0 && particles->getPhysicalValues(1,4)[idxPart] != 0)  // If there are scattering mechanisms present
+    	  if ( scat_par->get_maxScatMech() > 0)  // If there are scattering mechanisms present
 
             Scatter(particles, mat_par, scat_par, idxPart); // scattering
 

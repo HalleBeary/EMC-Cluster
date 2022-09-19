@@ -46,7 +46,7 @@ void k_inreader(ContainerClass* particles, FReal* Total_Momenta, scat_paramClass
 
             // Set momenta
 
-            k = sqrt(mat_par->get_q()*2*mat_par->get_effmassX()) / (mat_par->get_hbar()) * sqrt(e * ( mat_par->get_alpha() * e + 1.0)); // factor q changes from eV to J, k in 1 / m
+            k = sqrt(mat_par->get_q()*2*mat_par->get_effmassE()) / (mat_par->get_hbar()) * sqrt(e * ( mat_par->get_alpha() * e + 1.0)); // factor q changes from eV to J, k in 1 / m
 
             fai = 2.0 * M_PI * Randomizer();
 
@@ -148,7 +148,7 @@ void kspace_init(ContainerClass* particles, scat_paramClass *scat_par, mat_param
 
     // Set momenta
 
-    k = sqrt(mat_par->get_q()*2*mat_par->get_effmassX()) / (mat_par->get_hbar()) * sqrt(e_start * ( mat_par->get_alpha() * e_start + 1.0)); // factor q changes from eV to J, k in 1 / m
+    k = sqrt(mat_par->get_q()*2*mat_par->get_effmassE()) / (mat_par->get_hbar()) * sqrt(e_start * ( mat_par->get_alpha() * e_start + 1.0)); // factor q changes from eV to J, k in 1 / m
 
     fai = 2.0 * M_PI * Randomizer();
 
@@ -177,7 +177,7 @@ void deltaE(ContainerClass* particles, geometryClass DevGeometry, scat_paramClas
     
     pulse_energy = 0.3;
     
-    k = sqrt(mat_par->get_q()*2*mat_par->get_effmassX()) / (mat_par->get_hbar()) * sqrt(pulse_energy * ( mat_par->get_alpha() * pulse_energy + 1.0)); // factor q changes from eV to J, k in 1 / m
+    k = sqrt(mat_par->get_q()*2*mat_par->get_effmassE()) / (mat_par->get_hbar()) * sqrt(pulse_energy * ( mat_par->get_alpha() * pulse_energy + 1.0)); // factor q changes from eV to J, k in 1 / m
 
     fai = 2.0 * M_PI * Randomizer();
 
@@ -265,12 +265,14 @@ void realspace(ContainerClass* particles, geometryClass DevGeometry, FSize idxPa
 
 void Particle_Identifier(ContainerClass* particles, FSize idxPart, int j, int N)
 {
-    
+    double ratio;
+
+    ratio = 0.5;    
 
     if (particles->getPhysicalValues()[idxPart] == -1)
       particles->getPhysicalValues(1,4)[idxPart] = - 1.0;   // -1 electron
 
-    else if (particles->getPhysicalValues()[idxPart] == 1 && j <= 0.25*N)
+    else if (particles->getPhysicalValues()[idxPart] == 1 && j <= ratio*N) // ratio determines percentage of holes vs ions and electrons
     {
         particles->getPhysicalValues(1,4)[idxPart] = 1.0; // +1 holes
     }

@@ -19,7 +19,7 @@ void acoustic(scat_paramClass *scat_par, mat_paramClass *mat_par, int *iCount)
     cL = mat_par->get_density() * mat_par->get_v_sound() * mat_par->get_v_sound();
     
 
-    Const = sqrt(2.0 * mat_par->get_effmassX()) * mat_par->get_effmassX() * mat_par->get_kb() * mat_par->get_temp() *
+    Const = sqrt(2.0 * mat_par->get_effmassE()) * mat_par->get_effmassE() * mat_par->get_kb() * mat_par->get_temp() *
             scat_par->get_def_pot() * scat_par->get_def_pot() / (M_PI * cL * pow(mat_par->get_hbar(), 4));
     
     output3 = fopen("rateAcoustic.csv", "w");

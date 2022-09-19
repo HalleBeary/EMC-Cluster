@@ -1,3 +1,4 @@
+
 #ifndef scatter_HPP
 #define scatter_HPP
 
@@ -19,7 +20,7 @@ void Isotropic (ContainerClass* particles, mat_paramClass *mat_par, FSize idxPar
     ky = particles->getPhysicalValues(2,1)[idxPart];
     kz = particles->getPhysicalValues(3,1)[idxPart];
 
-    gamma   = 1 / ( 2 * mat_par->get_q() * mat_par->get_effmassX()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz) ; // parabolic energy, alfa -> 0
+    gamma   = 1 / ( 2 * mat_par->get_q() * mat_par->get_effmassE()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz) ; // parabolic energy, alfa -> 0
 
     if (mat_par->get_alpha() > 0)
         energy  =  1 / (mat_par->get_q()) * 0.5*(1 / mat_par->get_alpha())*(pow(1 + 4*gamma*mat_par->get_alpha(), 0.5) - 1); 
@@ -48,14 +49,14 @@ void Anisotropic (ContainerClass* particles, mat_paramClass *mat_par, scat_param
     ky = particles->getPhysicalValues(2,1)[idxPart];
     kz = particles->getPhysicalValues(3,1)[idxPart];
 
-    gamma   = 1 / ( 2 * mat_par->get_q() * mat_par->get_effmassX()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz) ; // parabolic energy, alfa -> 0
+    gamma   = 1 / ( 2 * mat_par->get_q() * mat_par->get_effmassE()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz) ; // parabolic energy, alfa -> 0
 
     if (mat_par->get_alpha() > 0)
         e  =  1 / (mat_par->get_q()) * 0.5*(1 / mat_par->get_alpha())*(pow(1 + 4*gamma*mat_par->get_alpha(), 0.5) - 1); 
     else
         e = gamma ;
     
-    // e = 1 / (mat_par->get_q()) * mat_par->get_hbar()*mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz)/(2.0*mat_par->get_effmassX());
+    // e = 1 / (mat_par->get_q()) * mat_par->get_hbar()*mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz)/(2.0*mat_par->get_effmassE());
     
     eprime = e + scat_par->get_w(&iFix) * mat_par->get_hbar() / mat_par->get_q();
 
@@ -79,7 +80,7 @@ void Anisotropic (ContainerClass* particles, mat_paramClass *mat_par, scat_param
 
         //    std::cout << " here ? " << std::endl;
         
-        kp   =( 1 / mat_par->get_hbar() ) * sqrt(2.0 * mat_par->get_effmassX() * mat_par->get_q() * eprime * ( 1.0 + mat_par->get_alpha() * eprime)); // factor q for eV conversion
+        kp   =( 1 / mat_par->get_hbar() ) * sqrt(2.0 * mat_par->get_effmassE() * mat_par->get_q() * eprime * ( 1.0 + mat_par->get_alpha() * eprime)); // factor q for eV conversion
         
      //   std::cout << "kp: " <<  kp << "\n\n" << "\n";  
 
@@ -119,12 +120,12 @@ void Anisotropic_Isotropic(ContainerClass* particles, mat_paramClass *mat_par, s
 
 
     
-    gamma   = 1 / ( 2 * mat_par->get_q() * mat_par->get_effmassX()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz) ; // parabolic energy, alfa -> 0
+    gamma   = 1 / ( 2 * mat_par->get_q() * mat_par->get_effmassE()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz) ; // parabolic energy, alfa -> 0
 
     if (mat_par->get_alpha() > 0)
         e  =  1 / (mat_par->get_q()) * 0.5*(1 / mat_par->get_alpha())*(pow(1 + 4*gamma*mat_par->get_alpha(), 0.5) - 1); 
     else
-        e = gamma ;  //  e = 1 / (mat_par->get_q()) * mat_par->get_hbar()*mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz)/(2.0*mat_par->get_effmassX());
+        e = gamma ;  //  e = 1 / (mat_par->get_q()) * mat_par->get_hbar()*mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz)/(2.0*mat_par->get_effmassE());
 
 
     eprime = e + scat_par->get_w(&iFix) * mat_par->get_hbar() / mat_par->get_q();
@@ -139,7 +140,7 @@ void Anisotropic_Isotropic(ContainerClass* particles, mat_paramClass *mat_par, s
     }
     else {
         
-        k = /* some constants */sqrt(mat_par->get_q()*2*mat_par->get_effmassX()) / (mat_par->get_hbar()) *  pow(eprime*(mat_par->get_alpha() * eprime + 1.0), 0.5);
+        k = /* some constants */sqrt(mat_par->get_q()*2*mat_par->get_effmassE()) / (mat_par->get_hbar()) *  pow(eprime*(mat_par->get_alpha() * eprime + 1.0), 0.5);
     
         fi = 2.0 * M_PI * Randomizer();
 
@@ -174,12 +175,12 @@ void Scatter(ContainerClass* particles, mat_paramClass *mat_par, scat_paramClass
     ky = particles->getPhysicalValues(2,1)[idxPart];
     kz = particles->getPhysicalValues(3,1)[idxPart];
 
-    gamma   = 1 / ( 2 * mat_par->get_q() * mat_par->get_effmassX()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz) ; // parabolic energy, alfa -> 0
+    gamma   = 1 / ( 2 * mat_par->get_q() * mat_par->get_effmassE()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz) ; // parabolic energy, alfa -> 0
 
     if (mat_par->get_alpha() > 0)
         energy  =  1 / (mat_par->get_q()) * 0.5*(1 / mat_par->get_alpha())*(pow(1 + 4*gamma*mat_par->get_alpha(), 0.5) - 1); 
     else
-        energy = gamma ; // energy = 1 / (mat_par->get_q()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz)/(2*mat_par->get_effmassX());
+        energy = gamma ; // energy = 1 / (mat_par->get_q()) * mat_par->get_hbar()* mat_par->get_hbar()*(kx*kx + ky*ky + kz*kz)/(2*mat_par->get_effmassE());
 
 
 //     /* some constants */  kx*kx + ky*ky + kz*kz;
@@ -244,3 +245,5 @@ void Scatter(ContainerClass* particles, mat_paramClass *mat_par, scat_paramClass
 
 
 #endif
+
+

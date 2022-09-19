@@ -32,7 +32,7 @@ int polar(scat_paramClass *scat_par, mat_paramClass *mat_par, int *iCount, doubl
 
   Phononnumb = 1.0 / (exp(mat_par->get_hbar() *  w0  / (mat_par->get_kb() * mat_par->get_temp())) - 1.0); 
   Frohlich   = (1.0 / mat_par->get_eps_0()) * (1.0 / mat_par->get_eps_infty() - 1.0 / mat_par->get_eps());   // in units of eps_0.
-  PolarConst =  Frohlich * mat_par->get_q() * mat_par->get_q() *  sqrt(mat_par->get_effmassX() / 2.0 / mat_par->get_q()) * w0 / ( 4* M_PI * mat_par->get_hbar()) ; 
+  PolarConst =  Frohlich * mat_par->get_q() * mat_par->get_q() *  sqrt(mat_par->get_effmassE() / 2.0 / mat_par->get_q()) * w0 / ( 4* M_PI * mat_par->get_hbar()) ; 
 
 
   //=== ABSORPTION ===

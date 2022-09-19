@@ -20,7 +20,7 @@ template<typename FReal, typename GroupCellClass,
 	 typename MatrixKernelClass, int ORDER>  
 using FInterpolationKernel =  FChebSymKernel<FReal,GroupCellClass,GroupContainerClass,MatrixKernelClass,ORDER> ;
 							 //FChebSymKernel<FReal,GroupCellClass, GroupContainerClass, MatrixKernelClass, ORDER> ;
-const std::string interpolationType("Uniform interpolation");
+const std::string interpolationType("Chebyshev interpolation");
 
 #include <iostream>
 #include <iomanip>

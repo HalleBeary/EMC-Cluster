@@ -87,10 +87,10 @@ int main(int argc, char* argv[])
 
       k_inreader(particles, TotalMomenta,  &scat_par, &mat_par, idxPart, i);  // Change momenta
 
-      if (particles->getPhysicalValues()[idxPart] > 0) // Charge index for particle indentifier
-        j++;
+ //     if (particles->getPhysicalValues()[idxPart] > 0) // Charge index for particle indentifier
+//        j++;
 
-      Particle_Identifier(particles, idxPart, j, N); // give index to particles to determine their role (carrier or ion)
+    //  Particle_Identifier(particles, idxPart, j, N); // give index to particles to determine their role (carrier or ion)
 
 
       i++;
@@ -154,7 +154,7 @@ int main(int argc, char* argv[])
         std::cout << "\n periodic is on \n" ;
       }
 
-    //
+
     algorithm->execute();   // Here the call of the FMM algorithm
 
     time.tac();
@@ -199,8 +199,8 @@ int main(int argc, char* argv[])
 
                 for(FSize idxPart = 0; idxPart < particles2->getNbParticles() ; ++idxPart){ 
 
-		  if (particles2->getPhysicalValues(1,4)[idxPart] != 3) 
-                    free_flight_scatter(DevGeometry, particles2, &scat_par, &mat_par, idxPart, tsim, tpulse); 
+		//  if (particles2->getPhysicalValues(1,4)[idxPart] != 3) 
+                  free_flight_scatter(DevGeometry, particles2, &scat_par, &mat_par, idxPart, tsim, tpulse); 
                   //std::cout << " \n \n particle potential before: " << *particles2->getPotentials();
 
                 } // end for Advance each particle
@@ -219,7 +219,7 @@ int main(int argc, char* argv[])
 
         // -- Pulse -- If particle is hole or electron it will be excited, until the pulsesize is reached.  Ions are excluced by if-statement. 
         
-        if (tsim == tpulse || tsim == 5*tpulse){
+        if (tsim == tpulse ){
           octreeIterator.gotoBottomLeft();
           i = 0;
           {
@@ -229,11 +229,11 @@ int main(int argc, char* argv[])
 
           for(FSize idxPart = 0; idxPart <  particles3->getNbParticles() ; ++idxPart)
           {
-	    if (particles3->getPhysicalValues(1,4)[idxPart] != 3)	
-            {
-	        deltaE(particles3, DevGeometry, &scat_par, &mat_par, idxPart); 
-		i++;
-            } 
+	   // if (particles3->getPhysicalValues(1,4)[idxPart] != 3)	
+           // {
+	      deltaE(particles3, DevGeometry, &scat_par, &mat_par, idxPart); 
+	      i++;
+          //  } 
           }
             
           }while(octreeIterator.moveRight() && i < pulsesize * N);
@@ -248,7 +248,7 @@ int main(int argc, char* argv[])
           
          std::string nombre;
 
-         nombre = "../../../../data/p274598/Output/2pulses_mh10-10001-1e17_1e7-0.5-10-1.0/" + std::to_string(tsim) + ".fma";
+         nombre = "../../../../data/p274598/Output/rr_noPI-10001-1e16_1e7-0.2-10-1.0/" + std::to_string(tsim) + ".fma";
          EMCGenericWriter<FReal> writeur(nombre);
          writeur.writeDataFromOctree(&tree, loader.getNumberOfParticles());
          //Input_Output.output_writer(&tree, tsim);
