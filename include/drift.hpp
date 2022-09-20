@@ -49,14 +49,14 @@ void Drift(geometryClass DevGeometry, ContainerClass* particles, mat_paramClass 
     invmass = 1 / ( mat_par->get_effmassE());  
 
 
-//      if (particles->getPhysicalValues(1,4)[idxPart] < 0) // electrons
-//          invmass = 1 / ( mat_par->get_effmassE());
-//    
-//      else if (particles->getPhysicalValues(1,4)[idxPart] > 0) // holes
-//          invmass = 1 / ( mat_par->get_effmassH());
-//    
-//      else
-//          invmass = 1 / ( mat_par->get_effmass_ions()); // ions
+    if (particles->getPhysicalValues()[idxPart] < 0) // electrons
+        invmass = 1 / ( mat_par->get_effmassE());
+    
+    else if (particles->getPhysicalValues()[idxPart] > 0) // holes
+        invmass = 1 / ( mat_par->get_effmassH());
+    
+     else
+        invmass = 1 / ( mat_par->get_effmass_ions()); // ions
 
 
 //    m_c     = mat_par->get_effmassX()*pow(1 + 4*mat_par->get_alpha()*energy, 0.5); // constant used to compute displacement

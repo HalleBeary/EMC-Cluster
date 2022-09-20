@@ -10,8 +10,8 @@ void resetParticleLocation(OctreeClass *tree)
   octreeIterator.gotoTop();
   octreeIterator.getCurrentCell()->resetToInitialState();
 
- 	tree->forEachCell([&](CellClass* cell){
-			cell->resetToInitialState();});
+  tree->forEachCell([&](CellClass* cell){
+      cell->resetToInitialState();}); // extra reset for periodicity. Each cell is resetted to initial state
 
   do{
     octreeIterator.moveDown();

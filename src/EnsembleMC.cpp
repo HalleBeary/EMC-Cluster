@@ -106,7 +106,11 @@ int main(int argc, char* argv[])
 
   std::cout << "box dimension: " << DevGeometry.get_boxdim() << "\n \n" << std::endl;
 
-  double pulsesize = 1.0;
+  std::cout << "eff mass electron: " << mat_par.get_effmassE() << "\n \n" << std::endl;
+
+  std::cout << "eff mass holes: " << mat_par.get_effmassH() << "\n \n" << std::endl;
+
+  double pulsesize = 0.9;
 
   int totaltime = 10001;
   int tpulse = totaltime/10;
@@ -248,7 +252,7 @@ int main(int argc, char* argv[])
           
          std::string nombre;
 
-         nombre = "../../../../data/p274598/Output/rr_noPI-10001-1e16_1e7-0.2-10-1.0/" + std::to_string(tsim) + ".fma";
+         nombre = "../../../../data/p274598/Output/rrtests_10Mh-10001-1e17_1e7-0.2-10-0.9/" + std::to_string(tsim) + ".fma";
          EMCGenericWriter<FReal> writeur(nombre);
          writeur.writeDataFromOctree(&tree, loader.getNumberOfParticles());
          //Input_Output.output_writer(&tree, tsim);
