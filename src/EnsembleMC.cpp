@@ -110,11 +110,13 @@ int main(int argc, char* argv[])
 
   std::cout << "eff mass holes: " << mat_par.get_effmassH() << "\n \n" << std::endl;
 
-  double pulsesize = 0.9;
+  std::cout << "dielectric constants: eps_st : " << mat_par.get_eps() << " , eps_uv: " << mat_par.get_eps_infty() << "\n \n " << std::endl;
+
+  double pulsesize = 1.0;
 
   int totaltime = 10001;
   int tpulse = totaltime/10;
-  int twrite = totaltime/200; //totaltime / 100;
+  int twrite = totaltime/100; 
   for(int tsim = 0 ; tsim < totaltime; tsim ++) // total simulation time in fs
   {
     std::cout << "Start of " << tsim << "'th FMM run" << std::endl;
@@ -252,7 +254,7 @@ int main(int argc, char* argv[])
           
          std::string nombre;
 
-         nombre = "../../../../data/p274598/Output/rrtests_10Mh-10001-1e17_1e7-0.2-10-0.9/" + std::to_string(tsim) + ".fma";
+         nombre = "../../../../data/p274598/Output/mapbi3-10001-3e16_holes-0.15-4.5-1.0/" + std::to_string(tsim) + ".fma";
          EMCGenericWriter<FReal> writeur(nombre);
          writeur.writeDataFromOctree(&tree, loader.getNumberOfParticles());
          //Input_Output.output_writer(&tree, tsim);

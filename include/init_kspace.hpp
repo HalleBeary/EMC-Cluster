@@ -175,7 +175,7 @@ void deltaE(ContainerClass* particles, geometryClass DevGeometry, scat_paramClas
 { 
     double pulse_energy, k, fai, ct, st, kx, ky, kz; // let the particle loop run over only fraction of total number of particles so that you only excite these particles
     
-    pulse_energy = 0.3;
+    pulse_energy = 0.2;
     
     k = sqrt(mat_par->get_q()*2*mat_par->get_effmassE()) / (mat_par->get_hbar()) * sqrt(pulse_energy * ( mat_par->get_alpha() * pulse_energy + 1.0)); // factor q changes from eV to J, k in 1 / m
 
@@ -289,7 +289,7 @@ void ChargeChanger(ContainerClass* particles, FSize idxPart)
 {
     double dopingcharge;
     
-    dopingcharge = 2.0;
+    dopingcharge = 1.0;
     particles->getPhysicalValues()[idxPart] = dopingcharge;   
 
 };

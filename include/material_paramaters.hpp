@@ -22,7 +22,7 @@ class geometryClass
         double Zmax = 0.;
         double Zmin = 0.;
 
-      geometryClass(FFmaGenericLoader<FReal> *loader) : box_dim{1e7}
+      geometryClass(FFmaGenericLoader<FReal> *loader) : box_dim{1e6}
       {
         BoxWidth=loader->getBoxWidth(); 
         BoxCenter=loader->getCenterOfBox();
@@ -53,7 +53,7 @@ class mat_paramClass
 
 
     public:
-        mat_paramClass() : hbar{1.05459e-34}, q{1.60219e-19}, eps_0{8.85419e-12}, kb{1.38066e-23},  m_0{9.11e-31},  alpha{0}, v_sound{343.0}, temp{300.0}, vt{temp*kb / ( 1.60219e-19)}, density{2000}, eps{30}, eps_infty{10}, effmass{0.2*9.11e-31, 10*0.2*9.11e-31, 0.2*9.11e-31}{}
+        mat_paramClass() : hbar{1.05459e-34}, q{1.60219e-19}, eps_0{8.85419e-12}, kb{1.38066e-23},  m_0{9.11e-31},  alpha{0}, v_sound{343.0}, temp{300.0}, vt{temp*kb / ( 1.60219e-19)}, density{2000}, eps{25}, eps_infty{4.5}, effmass{0.15*9.11e-31, 0.15*9.11e-31, 0.15*9.11e-31}{}
         
         void seteffectivemasses (double effmassE, double effmassH, double effmass_ions);
         double get_effmassE ();
@@ -180,7 +180,7 @@ class scat_paramClass
 
 
     public: 
-        scat_paramClass(int ac, int op) : def_pot{-2.13 * 1.6e-19}, polarw0{5e12*2*M_PI}, acousticscattering(ac),opticalscattering(op){}
+        scat_paramClass(int ac, int op) : def_pot{-2.13 * 1.6e-19}, polarw0{2.25e12*2*M_PI}, acousticscattering(ac),opticalscattering(op){}
 
         void set_w(const int * iCount, double omega);
         double get_w(const int * iCount);

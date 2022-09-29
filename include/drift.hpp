@@ -134,7 +134,7 @@ void Drift(geometryClass DevGeometry, ContainerClass* particles, mat_paramClass 
 
    // std::cout << "Energy of particle: " << energy << "\n" << std::endl;
 
-    if (energy > 40000000) 
+    if (energy > 4) 
     {   
         std::cout << "removing particle \n\n" << std::endl;
         particles->removeParticles(&idxPart, 1);
